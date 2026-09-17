@@ -134,6 +134,7 @@
   .cart-item-qty {
     position: absolute;
     right: -8px;
+    top: -2px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -635,7 +636,10 @@
   .quantity-desc span {
     padding: 6px 12px;
     font-size: 16px;
-    cursor: pointer;
+  }
+  .quantity-desc button {
+    padding: 6px 12px;
+    font-size: 16px;
   }
 
   .quantity-desc .minus {
@@ -644,11 +648,11 @@
   }
 
   .quantity-desc .num {
-    border-right: 1px solid gray;
     font-size: 20px;
   }
 
   .quantity-desc .plus {
+    border-left: 1px solid gray;
     color: rgb(49 168 49);
   }
 
@@ -788,6 +792,26 @@
     width: 77%;
     height: 56%;
   }
+
+  
+.footer-container{
+  color: #324d67;
+  text-align: center;
+  margin-top: 20px;
+  padding: 30px 10px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+
+}
+.footer-container .icons{
+  font-size: 30px;
+  display: flex;
+  gap: 10px;
+}
 
   .banner-desc {
     flex-wrap: wrap;

@@ -12,9 +12,6 @@ const HeroBanner = ({ heroBanner }: { heroBanner: any }) => {
     smallText,
     midText,
     largeText1,
-    largeText2,
-    discount,
-    saleTime,
   } = heroBanner;
   return (
     <div className="hero-banner-container">
@@ -30,7 +27,7 @@ const HeroBanner = ({ heroBanner }: { heroBanner: any }) => {
           className="hero-banner-image"
         />
         <div>
-          <Link href={`/product/${product}`}>
+          <Link href={`/products/${product}`}>
             <button type="button">{buttonText}</button>
           </Link>
         </div>

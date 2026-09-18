@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext,   useContext,   useState,   type ReactNode, } from "react";
+import toast from "react-hot-toast";
 
 
 export type StateContextType = {
@@ -11,6 +12,8 @@ export type StateContextType = {
   qty: number;
   incQty: () => void
   decQty: () => void
+  onAdd: any
+  setShowCart: any
 }
 
 
@@ -30,10 +33,12 @@ export const StateContext = ({children}: {children: ReactNode}) => {
     //Check if an item already exists in the cart 
     const checkProductInCart = cartItems.find((item: any) => item._id === product._id)
 
-    //If yes -- Then update the total qty and total price in the cart 
+    // Always update the total qty and total price (checkProductInCart) or (!checkProductInCart)
+    setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity )
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + prevTotalPrice * quantity)
+
+    //If yes -- checkProductInCart update the cartItems - map - get the item and update it's values
     if(checkProductInCart) {
-      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity )
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + prevTotalPrice * quantity)
       // update the item
       const updatedCartItems = cartItems.map((cartProduct: any) => {
         if(cartProduct._id === product._id) return {
@@ -43,7 +48,13 @@ export const StateContext = ({children}: {children: ReactNode}) => {
       })
       setCartItems(updatedCartItems)
       
+      // the item does not exist already in the cart -- !checkProductInCart
+    } else {
+      product.quantity = quantity
+      setCartItems([...cartItems, {...product}])
     }
+    toast.success(`${qty} ${product.name} added to your cart`)
+    setQty(1)
   }
 
   const incQty = () => {
@@ -67,6 +78,8 @@ export const StateContext = ({children}: {children: ReactNode}) => {
       qty,
       incQty,
       decQty,
+      onAdd,
+      setShowCart,
       }}>
         {children}
     </Context>

@@ -1,5 +1,5 @@
-import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
+import NavCart from "./NavCart"
 
 const Navbar = () => {
   return (
@@ -10,10 +10,8 @@ const Navbar = () => {
             >
                 JSM Headphones
             </Link>
-            <button className="cart-icon" type="button">
-                <ShoppingCart />
-                 <span className="cart-item-qty">1</span>
-            </button>
+            <NavCart />
+          
     </nav>
   )
 }

@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {hostname: "cdn.sanity.io"}
     ]
-  }
+  },
+  reactStrictMode: false
 };
 
 export default nextConfig;

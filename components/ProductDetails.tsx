@@ -1,12 +1,18 @@
 "use client"
 
+import { useStateContext } from "@/context/StateContext"
+// import { useStateContext } from "@/context/StateContext"
 import { urlFor } from "@/sanity/lib/image"
 import { MinusIcon, PlusIcon, Star } from "lucide-react"
 import Image from "next/image"
+import { useState } from "react"
 
 
 const ProductDetails = ({product}: {product: any}) => {
     const {image, name, details, price} = product
+    const [imageIndex, setImageIndex] = useState(0)
+
+    const {qty, incQty, decQty} = useStateContext()
 
   return (
     <div className="product-detail-container">
@@ -14,20 +20,23 @@ const ProductDetails = ({product}: {product: any}) => {
     <div>
       <div className="image-container"> 
         <Image 
-          src={urlFor(image[0]).url()}
+          src={urlFor(image[imageIndex]).url()}
           alt={name ?? "product image"}
-          width={300}
-          height={300}
+          width={1080}
+          height={1020}
+          className="product-detail-image"
         />
       </div>
       <div className="small-images-container">
-        {image?.map((item: URL, index: number) => (
+        {image?.map((item: string, index: number) => (
           <Image
           src={urlFor(item).url()}
           alt="product images"
-          width={90}
-          height={90}
+          width={75}
+          height={75}
           key={index}
+          onMouseEnter={() => setImageIndex(index)}
+          className={index === imageIndex ? "small-image selected-image" : "small image"}
           />
         ))}
       </div>
@@ -63,13 +72,13 @@ const ProductDetails = ({product}: {product: any}) => {
             Quantity:
           </h3>
           <div className="quantity-desc">
-            <button className="minus" onClick={() => {}}>
+            <button className="minus" onClick={decQty}>
                 <MinusIcon className="size-4 cursor-pointer" strokeWidth={2} />
             </button>
             <span className="num">
-                5
+                {qty}
             </span>
-            <button className="plus" onClick={() => {}}>
+            <button className="plus" onClick={incQty}>
                 <PlusIcon className="size-4 cursor-pointer" strokeWidth={2} />
             </button>
           </div>

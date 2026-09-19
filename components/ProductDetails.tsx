@@ -61,7 +61,7 @@ const ProductDetails = ({product}: {product: any}) => {
           </div>
 
             {/** */}
-          <h4>Details:</h4>
+          <h4 className="font-semibold text-lg">Details:</h4>
           <p>{details}</p>
           <p className="price">${price}</p>
             {/** */}

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 
 const NavCart = () => {
-    const {totalQuantities, showCart, setShowCart, cartItems, qty, decQty, toggleCartItemQuantity, totalPrice} = useStateContext()
+    const {totalQuantities, showCart, setShowCart, cartItems, onRemove, toggleCartItemQuantity, totalPrice} = useStateContext()
     const cartRef = useRef(null)
   return (
     <>
@@ -66,7 +66,11 @@ const NavCart = () => {
                 <PlusIcon className="size-4 cursor-pointer" strokeWidth={2} />
             </button>
           </div>
-          <button>
+          <button
+          onClick={() => onRemove(item._id)
+          }
+          className='cursor-pointer'
+          >
             <XIcon className='text-red-500 border-2 rounded-full size-5 p-0.5 ' />
           </button>
                  </div>

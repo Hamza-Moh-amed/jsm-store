@@ -6,8 +6,8 @@ import { BANNERS_QUERY, PRODUCTS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home() {
 
-  const products = await sanityFetch({query: PRODUCTS_QUERY, revalidate: 0})
-  const bannerData = await sanityFetch({query: BANNERS_QUERY, revalidate: 0})
+  const products = await sanityFetch({query: PRODUCTS_QUERY})
+  const bannerData = await sanityFetch({query: BANNERS_QUERY})
 
   return (
    <>

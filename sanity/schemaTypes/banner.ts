@@ -21,7 +21,7 @@ export const banner = defineType({
             type: "string",
         }),
         defineField({
-            name: "dec",
+            name: "desc",
             title: 'Desc',
             type: "string",
         }),
